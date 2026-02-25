@@ -1,0 +1,701 @@
+@charset "UTF-8";
+
+/*フォント
+　・catchcopy/kaminameにのみ使用中
+　・可読性：雰囲気優先で選定*/
+
+/*NOTE:現在は未使用、ベースのフォント指定あればこちらに（ブラウザに依存中）*/
+@font-face {
+  font-family: "name";
+  src: url("../fonts/.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*キャッチコピー
+　NOTE:可読性低いため多用禁止*/
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../fonts/shokakisarari.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*祭神名フォント
+　NOTE：雰囲気で決めた、文字サイズが小さいと潰れる*/
+@font-face {
+  font-family: 'Tamanegi';
+  src: url('../fonts/tamanegikaisyo.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*ページ内リンクのスクロールを滑らかにする*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*視覚的に非表示
+NOTE:アクセシビリティ対応*/
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+/*セクション間の余白*/
+section {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+/*画像共通設定*/
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+}
+
+/*現在未使用、画像中央寄せ
+　NOTE:将来的にギャラリー化した際使用してください
+　TODO:grid/flexへの切り替え検討 */
+.center-img {
+  display: block;
+  margin: 1rem auto;
+  height: auto; /* 元の比率維持 */
+  max-width: 100%;
+}
+
+/* 全体の文字設定 */
+.index_body {
+  text-align: center;
+  font-family: "", serif; /*ブラウザ依存*/
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+  background: url("../images/background_image.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/*スプラッシュ動画
+NOTE:JSで制御している、skipBtn(10000)との兼ね合いもあるため
+z-indexの変更には注意*/
+#splash {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#splash video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*スプラッシュをスキップする
+  NOTE:動画より前面に設定中
+  TODO:目立たないため、自然なカラーを付ける*/
+#skipBtn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+
+  z-index: 10000; /*動画より上*/
+  padding: 10px 20px;
+  font-size: 14px;
+
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+html,body{
+  height: 100%;
+}
+
+/*リストの共通設定*/
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*ヘッダー縦並び*/
+.index_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*キャッチコピー
+TODO:フォント再検討の余地あり*/
+.catchcopy {
+  font-family: "MyCustomFont", serif;
+  margin: 120px 0 12px;
+  font-size: 3rem;
+  text-align: center;
+  opacity: 0;
+  z-index: 10;
+  transform: translateY(80px);
+  transition: opacity 2s ease,transform 2s ease;
+}
+
+.catchcopy.is-show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*祭神名見出し
+  NOTE:他cssに上書きされるのでimportantを使用した
+  変更時は全体設計の見直し要、フォントも変更したい*/
+.kami-title {
+  font-size: 3rem !important;
+  letter-spacing: 0.2em !important;
+  margin-bottom: 120px !important;
+  text-align: center !important;
+}
+
+/*祭神リスト*/
+.kami-list {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/*神1柱ごとの大きさを決定
+　TODO:大きく作りすぎた気がする…、違和感感じたら修正*/
+.kami-item {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  margin: 0 auto 140px;
+}
+
+/*祭神の画像
+  NOTE:画像自体の大きさはある程度修正済であるが
+  均一ではないため注意*/
+.kami-image {
+  flex: 0 0 40%;
+}
+
+.kami-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/*祭神の説明文*/
+.kami-text {
+  flex: 1;
+  text-align: left;
+}
+
+/*左→右→左 に交互配置*/
+.kami-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/*スマホは縦並び*/
+@media (max-width: 768px) {
+  .kami-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .kami-text {
+    text-align: left;
+  }
+}
+
+
+/*祭神名
+NOTE:フォント反映済*/
+.kamisama_name{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-family: Tamanegi;
+}
+
+.furigana{
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.2rem;
+    color: rgba(0, 0, 0, 0.45);
+    letter-spacing: 0.1em;
+}
+
+#about-odayama,
+#about-ontake {
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+#about-odayama p,
+#about-ontake p {
+  margin-bottom: 1.8em;   /* 段落間 */
+  line-height: 2;         /* 行間は広めが神社向き */
+  font-size: 1.05rem;
+}
+
+#about-ontake {
+  background: rgba(255,255,255,0.75);
+  padding: 60px 24px;
+  border-radius: 12px;
+}
+
+/*祭神スクロール演出*/
+
+/*初期状態*/
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/*表示状態*/
+.fade-up.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*メインビジュアル*/
+.mainvisual {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+/*背景動画*/
+.mainvisual video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/*半透明オーバーレイ*/
+.mainvisual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.22);
+  z-index: 2;
+}
+
+/*ナビ
+  TODO:背景白だが、改善の余地あり*/
+.header_nav {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  z-index: 1;
+}
+
+/*リンク*/
+.header_nav a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 12px;
+  transition: color 0.1s, background 0.1s;
+}
+
+/*ホバー時*/
+.header_nav a:hover {
+  color: #fff;
+  background: #333;
+  border-radius: 6px;
+}
+
+/*スマホ対応*/
+@media screen and (max-width: 768px) {
+  .header_nav {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 0;
+  }
+}
+
+/*ヘッダーロゴ*/
+.header_logo {
+  position: relative; /*mainvisual外で下に置くため relative*/
+  display: block;
+  margin: 20px auto 0; /*動画の下に重ならないように調整*/
+  width: 240px;
+  height: auto;
+  z-index: 0; /* 動画より下に見える */
+}
+
+/*iframeで埋め込み
+  NOTE:今後カレンダー自作しAPI使用する場合は削除する*/
+.googlecalendar {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.googlecalendar iframe {
+  width: 100%;
+  height: 600px; /* 必要に応じて調整 */
+  border: none;
+}
+
+/*アクセスセクション全体*/
+#access {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Yu Gothic', 'Hiragino Kaku Gothic Pro', sans-serif;
+    color: #333;
+}
+
+#access h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#access p {
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+/*共通カードスタイル*/
+#access .access-train,
+#access .access-bus,
+#access .access-car {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /*影*/
+    transition: transform 0.2s ease;
+}
+
+/*ホバー時に少し浮かせてみる
+  NOTE:リンクでもないし、紛らわしいため消そうか悩んでいる*/
+#access .access-train:hover,
+#access .access-bus:hover,
+#access .access-car:hover {
+    transform: translateY(-3px);
+}
+
+/*小見出し*/
+#access h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+/*ニュースリスト*/
+.news-list li {
+  max-width: 800px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/*新着情報ホバー
+  NOTE:これは消さない*/
+.news-list li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .news-list li {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .news-thumb {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 12px;
+  }
+}
+
+.news-thumb {
+  width: 80px;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+/*グーグルマップ*/
+.google_map iframe {
+  width: 100%;
+  height: 400px;
+}
+
+
+/*以下インスタ関連*/
+/*TODO:QRを「投稿一覧を見る」まで表示したいが新着情報で消える
+  jsの問題か*/
+
+
+  
+.insta-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  border: 1px solid #000;
+  text-decoration: none;
+  color: #000;
+}
+
+/*初期は非表示*/
+.insta_qr {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 160px;
+  height: auto;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px); /* 下から少し浮かせる動き */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/*表示クラス*/
+.insta_qr.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.youtube-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.youtube-container iframe {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
+/*フッター*/
+footer {
+  padding: 24px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.jinjahisyo_logo {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+  cursor: pointer;
+}
+
+/*NOTE:消すとインスタ投稿が縦１列になる
+  現状埋め込みだが、サムネ挿入の方が動かせやすいと結論*/
+.instagram-media {
+  max-width: 540px !important;
+  width: 100% !important;
+  margin: 24px auto !important;
+}
+
+/*NOTE:消すとインスタ投稿が縦１列になる*/
+.instagram-media iframe {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.instagram-grid .instagram-media {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/*Instagram埋め込みの縦長対策 */
+.instagram-grid iframe {
+  width: 100% !important;
+}
+
+/*Instagramをflex*/
+
+.instagram-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.instagram-grid .instagram-media {
+  flex: 0 0 calc(50% - 8px);
+  max-width: calc(50% - 8px) !important;
+  margin: 0 !important;
+}
+
+/*タブレット*/
+@media (max-width: 768px) {
+  .instagram-grid .instagram-media {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+/*スマホ*/
+@media (max-width: 480px) {
+  .instagram-grid .instagram-media {
+    flex: 0 0 100%;
+  }
+}
+
+/*イベントテーブル
+TODO:画像挿入予定*/
+
+.events-comment{
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.events-table {
+  border-collapse: collapse;
+  width: auto;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.events-table th,
+.events-table td {
+  padding: 20px 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.events-table th {
+  background-color: #f5f3ec;
+  text-align: left;
+  font-weight: normal;
+}
+
+.events-table tr:last-child td {
+  border-bottom: none;
+}
+
+
+
+
+
+/*厄年全体
+  NOTE:情報量が多いため視認性優先した、デザイン変更時は可読性を維持したい*/
+.yakudoshi {
+  max-width: 1100px;
+  margin: 120px auto;
+  padding: 0 16px;
+}
+
+.yakudoshi h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 80px;
+  letter-spacing: 0.15em;
+}
+
+/*2カラム*/
+.yakudoshi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+/*男・女ボックス*/
+.yakudoshi-box {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 32px;
+}
+
+.yakudoshi-box h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 32px;
+  letter-spacing: 0.2em;
+}
+
+/*前厄・本厄・後厄をセットに*/
+.yaku-set {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+  background: #fff;
+}
+
+/*年齢帯タイトル*/
+.yaku-set-title {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #555;
+  letter-spacing: 0.1em;
+}
+
+/*各行*/
+.yaku-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px dashed #ddd;
+  font-size: 0.95rem;
+}
+
+.yaku-row:last-child {
+  border-bottom: none;
+}
+
+/*本厄を強調する*/
+.yaku-row.honyaku {
+  color: #b30000;
+  font-weight: bold;
+  background: rgba(179,0,0,0.05);
+  border-radius: 6px;
+}
+
+/*スマホ対応*/
+@media (max-width: 768px) {
+  .yakudoshi-grid {
+    grid-template-columns: 1fr;
+  }
+}
