@@ -103,7 +103,7 @@ z-indexの変更には注意*/
 
 /*スプラッシュをスキップする
   NOTE:動画より前面に設定中
-  TODO:目立たないため、自然なカラーを付ける*/
+  TODO:目立たないため、自然なカラーを付けたい*/
 #skipBtn {
   position: absolute;
   bottom: 40px;
@@ -244,8 +244,8 @@ NOTE:フォント反映済*/
 
 #about-odayama p,
 #about-ontake p {
-  margin-bottom: 1.8em;   /* 段落間 */
-  line-height: 2;         /* 行間は広めが神社向き */
+  margin-bottom: 1.8em;   /* 段落間*/
+  line-height: 2;         /* 行間*/
   font-size: 1.05rem;
 }
 
