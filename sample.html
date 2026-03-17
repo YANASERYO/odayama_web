@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <!--SEO-->
+        <title>##変更する</title>
+        <meta name="description" content="##変更する">
+        <meta name="keywords" content="御嶽教,神社,初宮,初詣,お守り,御祈願,お祓い,お払い,厄払い,参拝,おみくじ,御朱印,福岡県,北九州市,若松区,三社参り">
+        <!--電話番号自動リンク無効-->
+        <meta name="format-detection" content="telephone=no">
+        <!--favicon-->
+        <link rel="icon" href="images/favicon.ico">
+        <!--iOS-->
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <!--Android/PWA-->
+        <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
+        <!--ress/css-->
+        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+
+    <body class="index_body">
+
+        <!fragments>
+        <div id="header-area"></div>
+
+        <main>
+            
+        </main>
+
+        <footer>
+            <address>
+                〒808‐0012<br>
+                福岡県北九州市若松区深町1丁目17‐27<br>
+                TEL 093‐771‐4134
+            </address>
+            <p>© 御嶽教若松教会 小田山神社</p>
+            <a href="https://github.com/YANASERYO" target="_blank" rel="noopener">
+                <img src="images/jinjahisyo_logo.png" alt="神社秘書ロゴ" class="jinjahisyo_logo">
+            </a>
+        </footer>
+
+
+        <script>
+        window.addEventListener("load", () => {
+            const splash = document.getElementById("splash");
+            const skip = document.getElementById("skipBtn");
+
+            const hideSplash = () => {
+                splash.style.opacity = "0";
+                setTimeout(() => splash.style.display = "none", 1200);
+            };
+
+            skip.addEventListener("click", hideSplash);
+
+            setTimeout(hideSplash, 11500);
+            });
+        </script>
+
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const targets = document.querySelectorAll(".catchcopy");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-show");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            targets.forEach(target => observer.observe(target));
+        });
+        </script>
+
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const qr = document.querySelector(".insta_qr");
+            const newsSection = document.querySelector("#news");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting){
+                        qr.classList.add("show");
+                    } else {
+                        qr.classList.remove("show");
+                    }
+                });
+            }, {
+                threshold: 0.1 
+            });
+
+            observer.observe(newsSection);
+        });
+        </script>
+
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const targets = document.querySelectorAll(".fade-up");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-show");
+                    observer.unobserve(entry.target);
+                }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            targets.forEach(target => observer.observe(target));
+        });
+        </script>
+
+       <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+            /*毎年ここだけ変更*/
+            const CURRENT_YEAR = 2026;
+            const ERA_NAME = "令和";
+            const ERA_START = 2019;
+
+            const yakudoshi = {
+                male: [
+                { age: 24, label: "前厄" },
+                { age: 25, label: "本厄", main: true },
+                { age: 26, label: "後厄" },
+                { age: 41, label: "前厄" },
+                { age: 42, label: "本厄", main: true },
+                { age: 43, label: "後厄" },
+                { age: 60, label: "前厄" },
+                { age: 61, label: "本厄", main: true },
+                { age: 62, label: "後厄" }
+                ],
+                female: [
+                { age: 18, label: "前厄" },
+                { age: 19, label: "本厄", main: true },
+                { age: 20, label: "後厄" },
+                { age: 32, label: "前厄" },
+                { age: 33, label: "本厄", main: true },
+                { age: 34, label: "後厄" },
+                { age: 36, label: "前厄" },
+                { age: 37, label: "本厄", main: true },
+                { age: 38, label: "後厄" }
+                ]
+            };
+
+            function eraYear(year) {
+                return year >= ERA_START
+                ? `${ERA_NAME}${year - ERA_START + 1}`
+                : year;
+            }
+
+            function renderGrouped(targetId, data) {
+                const wrap = document.getElementById(targetId);
+                if (!wrap) return;
+
+                for (let i = 0; i < data.length; i += 3) {
+                const group = data.slice(i, i + 3);
+
+                const set = document.createElement("div");
+                set.className = "yaku-set";
+
+                const title = document.createElement("div");
+                title.className = "yaku-set-title";
+                title.textContent = `${group[0].age}〜${group[2].age}歳`;
+                set.appendChild(title);
+
+                group.forEach(item => {
+                    const birthYear = CURRENT_YEAR - item.age + 1;
+                    const row = document.createElement("div");
+                    row.className = "yaku-row";
+                    if (item.main) row.classList.add("honyaku");
+
+                    row.innerHTML = `
+                    <span>${item.age}歳 ${item.label}</span>
+                    <span>${eraYear(birthYear)}年生</span>
+                    `;
+                    set.appendChild(row);
+                });
+
+                wrap.appendChild(set);
+                }
+            }
+
+            document.getElementById("era-year").textContent = eraYear(CURRENT_YEAR);
+            renderGrouped("yakudoshi-male", yakudoshi.male);
+            renderGrouped("yakudoshi-female", yakudoshi.female);
+
+            });
+        </script>
+
+        <!--NOTE:外部jsにつきhtmlより削除NG-->
+        <script async src="https://www.instagram.com/embed.js"></script>
+    </body>
+</html>

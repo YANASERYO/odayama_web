@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <!--SEO-->
         <title>御嶽教若松教会 小田山神社</title>
         <meta name="description" content="北九州市若松区にて1,400年前より信仰を集めてきた土地に鎮座する稲荷神社。">
@@ -28,7 +28,7 @@
             skipボタンあり
         -->
         <div id="splash">
-            <video id="splashmovie" autoplay muted playinline>
+            <video id="splashmovie" autoplay muted playinline controls>
                 <source src="video/splash-movie.mp4" type="video/mp4">
             </video>
 
@@ -36,122 +36,15 @@
             <button id="skipBtn">SKIP</button>
         </div>
 
+        <!fragments>
+        <div id="header-area"></div>
+
         <header class="index_header">
-            <!--ロゴ画像（一番上に表示）-->
-            <img src="images/header_logo.png" alt="社紋・神社名" class="header_logo">
-            <!--メインビジュアル
-                ・動画のみ（背景化している）-->
-            <div class="mainvisual">
-                <video autoplay muted loop playsinline poster="images/header_poster.jpg">
-                    <source src="video/header_video.mp4" type="video/mp4">
-                </video>
-            </div>
-            <!--グローバルナビ
-                TODO:ギャラリーページを作成予定-->
-            <ul class="header_nav">
-                <li><a href="#kami">御祭神</a></li>
-                <li><a href="#about-odayama">小田山神社について</a></li>
-                <li><a href="#about-ontake">御嶽教とは</a></li>
-                <li><a href="#news">新着情報</a></li>
-                <li><a href="#worship">御参拝・御祈願</a></li>
-                <li><a href="#events">年中行事</a></li>
-                <li><a href="#access">アクセス</a></li>
-            </ul>
-            <!--アクセシビリティ用（cssにて非表示処理済）-->
-            <h1 class="site-title visually-hidden">
-                御嶽教若松教会 小田山神社
-            </h1>
             <!--キャッチコピー（フェードイン）-->
             <h1 class="catchcopy">祈りは、時を越えて息づく</h1>
         </header>
 
         <main>
-            <!--ご祭神-->
-            <section id="kami">
-                <h2 class="kami-title fade-up">御祭神</h2>
-                <!--左右左のレイアウト-->
-                <div class="kami-list fade-up">
-                    <article class="kami-item fade-up">
-                        <div class="kami-image">
-                            <img src="images/kunitokotachi.jpg" alt="国常立尊">
-                        </div>
-                        <div class="kami-text">
-                            <h3 class="kamisama_name">
-                            国常立尊
-                            <span class="furigana">くにのとこたちのみこと</span>
-                            </h3>
-                            <p>
-                            国常立尊は天地開闢のはじめに現れた国土生成の根源神でございます。
-                            大地の基礎を固め、万物の安定と秩序を司り、国家安泰や家運隆昌、
-                            人生の基盤を整える御神徳をお授けくださる神様として崇敬されています。
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="kami-item fade-up">
-                        <div class="kami-image">
-                            <img src="images/oonamuchi.jpg" alt="大己貴命">
-                        </div>
-                        <div class="kami-text">
-                            <h3 class="kamisama_name">
-                            大己貴命
-                            <span class="furigana">おおなむちのみこと</span>
-                            </h3>
-                            <p>
-                            大己貴命は国造りを成し遂げ、人々の暮らしを豊かに導かれた大神です。
-                            縁結び、商売繁盛、厄除開運など幅広い御神徳を持ち、
-                            多くの人々のご縁と幸福を結ぶ神様として信仰されています。
-                            </p>
-                        </div>
-                    </article>
-
-                    <article class="kami-item fade-up">
-                        <div class="kami-image">
-                            <img src="images/sukunahiko.png" alt="少彦名命">
-                        </div>
-                        <div class="kami-text">
-                            <h3 class="kamisama_name" >
-                            少彦名命
-                            <span class="furigana">すくなひこのみこと</span>
-                            </h3>
-                            <p>
-                            少彦名命は医薬や知恵の神様として、人々に健康と癒しをもたらされました。
-                            病気平癒、健康長寿、学業成就の御利益があり、
-                            努力と智慧の大切さを教えてくださる神様です。
-                            </p>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section id="about-odayama" class="fade-up">
-                <h2>小田山神社について</h2>
-                <p>小田山神社（おだやまじんじゃ）は、北九州市若松区深町に鎮座する由緒ある神社でございます。<br>
-                元々は現在の若松区原町付近に祀られていた稲荷社に遡ると伝えられ、<br>大正時代の道路拡張に伴い現所在地へ遷座いたしました。</p>
-
-                <p>社殿は小高い丘の上に位置し、参道を登ると若松の街並みや響灘を一望でき、<br>
-                古くより地域の皆様の心のよりどころとして親しまれております。</p>
-
-                <p>当社では、木曾御嶽山を本山として崇敬する御嶽教の教えを基に、<br>
-                恒例の祭典やイベントを通じて広く崇敬を集めております。<br>
-                境内周辺には古墳群の史跡も存在し、若松地域の歴史と文化を今に伝えております。</p>
-            
-                <img src ="images/pray.png" alt="祭典の様子" class="center-img">        
-            </section>
-
-            <section id="about-ontake">
-                <div class="fade-up">
-                    <h3>御嶽教とは</h3>
-                    <p>御嶽教は信州の霊峰、木曾御嶽山を本山に仰ぐ教派神道です</p>
-                    <img src="images/hongu.png" alt="本宮" class="center-img" >
-
-                    <a href="https://www.ontakekyo.or.jp/about/" target="_blank"><img src="images/whats_ontake.png" alt="御嶽教って？" class="whats-ontake"></a>
-                    <a href="https://www.instagram.com/ontakekyo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="images/ontakekyo-instaqr.png" alt="御嶽教QR" class="ontakekyo-instaqr"></a>
-                </div>
-            </section>
-
-
-
             <section id="news" class="fade-up">
                 <h2>新着情報</h2>
                 <ul class="news-list">
@@ -208,39 +101,6 @@
                 <img src ="images/ontakekyou_qr.png" alt="インスタQR" class="insta_qr">
                 <img src="images/gosyuin-sample.png" alt="御朱印一覧"class="gosyuin-sample">
             </section>
-            </section>
-
-            <section id="worship" class="fade-up">
-                <h2>ご参拝・ご祈願</h2>
-                <p>
-                    ご参拝は年中可能ですが、御朱印につきましては午前10時～午後3時迄<br>
-                    御祈願につきましては事前に御連絡が必要となります
-                </p>
-                <p>電話番号 093‐771‐4134</p>
-                <p>※不在に付、お電話に出られない場合がございます、ご了承くださいませ。</p>
-                <!--TODO:カレンダー埋め込みしてますが、将来的にFlaskで開発中のカレンダーを搭載します-->
-                <div class="googlecalendar">
-                    <iframe src="https://calendar.google.com/calendar/embed?src=3501b21b695119206dcec02f15c9fcc447fb5714539db26497007f9657a046f3%40group.calendar.google.com&ctz=Asia%2FTokyo&mode=week&showTitle=0&bgcolor=%23fff" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-                </div> 
-            </section>
-
-            <section class="yakudoshi">
-                <h2><span id="era-year"></span>年 厄除</h2>
-
-                <div class="yakudoshi-grid">
-                    <div class="yakudoshi-box male">
-                        <h3>男性</h3>
-                        <div id="yakudoshi-male"></div>
-                    </div>
-
-                    <div class="yakudoshi-box female">
-                        <h3>女性</h3>
-                        <div id="yakudoshi-female"></div>
-                    </div>
-                </div>
-
-                <p class="note">※年齢は数え年です</p>
-            </section>
 
             <section id="events" class="fade-up">
                 <h2>年中行事</h2>
@@ -293,68 +153,36 @@
                     </tbody>
                 </table>
             </section>
-            <section id="access">
-                <h2>アクセス</h2>
-                <p>〒808‐0012<br>福岡県北九州市若松区深町1丁目17‐27</p>
-                <div class="access-train">
-                    <h3>電車</h3>
-                    <p><strong>筑豊本線「若松駅」から徒歩約22〜25分（約1.8km）</strong><br>※駅から神社までは住宅街・坂道を進むルートです。歩きやすい靴での移動をおすすめします</p>
-                </div>
-                <div class="access-bus">
-                    <h3>バス</h3>
-                    <p><strong>若松営業所</strong>などの北九州市営バス停から徒歩約数分圏内の場所あり<br>※最寄りバス停からの徒歩約距離・ルートはご利用の系統により異なります</p>
-                </div>
-                <div class="access-car">
-                    <h3>お車にてお越しの方</h3>
-                    <p><strong>専用駐車場</strong>につきましては、下記の動画をご確認ください<br>※神社向かって右手にございます</p>
-                </div>
-
-                <div class="youtube-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/EFWnFCwVYm8?si=CY7DzB_x2i4Q1BpI&amp;controls=0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowfullscreen></iframe>
-                </div>
-                
-                <div class="google_map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.917881879044!2d130.799636!3d33.91751300000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3543b81cff05eed1%3A0x1e705268b8f36aff!2z5bCP55Sw5bGx56We56S-!5e0!3m2!1sja!2sjp!4v1771502324762!5m2!1sja!2sjp"
-                        width="80%"
-                        height="450"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-
-            </section> 
-        </main>
-
-        <footer>
-            <address>
-                〒808‐0012<br>
-                福岡県北九州市若松区深町1丁目17‐27<br>
-                TEL 093‐771‐4134
-            </address>
-            <p>© 御嶽教若松教会 小田山神社</p>
-            <a href="https://github.com/YANASERYO" target="_blank" rel="noopener">
-                <img src="images/jinjahisyo_logo.png" alt="神社秘書ロゴ" class="jinjahisyo_logo">
-            </a>
-        </footer>
-
+           
+        <!fragmets>    
+        <div id="footer"></div>
 
         <script>
-        window.addEventListener("load", () => {
+        document.addEventListener("DOMContentLoaded", () => {
             const splash = document.getElementById("splash");
             const skip = document.getElementById("skipBtn");
+
+            // すでに表示済みなら非表示
+            if (localStorage.getItem("splashShown") === "true") {
+                splash.style.display = "none";
+                return;
+            }
 
             const hideSplash = () => {
                 splash.style.opacity = "0";
                 setTimeout(() => splash.style.display = "none", 1200);
+                localStorage.setItem("splashShown", "true"); // ここで書き込む
             };
 
             skip.addEventListener("click", hideSplash);
 
+            // 自動非表示（動画の長さに合わせて）
             setTimeout(hideSplash, 11500);
-            });
+
+            // 動画再生開始
+            const video = document.getElementById("splashmovie");
+            if (video) video.play().catch(() => {});
+        });
         </script>
 
 
@@ -419,84 +247,10 @@
         });
         </script>
 
-       <script>
-            document.addEventListener("DOMContentLoaded", () => {
-
-            /*毎年ここだけ変更*/
-            const CURRENT_YEAR = 2026;
-            const ERA_NAME = "令和";
-            const ERA_START = 2019;
-
-            const yakudoshi = {
-                male: [
-                { age: 24, label: "前厄" },
-                { age: 25, label: "本厄", main: true },
-                { age: 26, label: "後厄" },
-                { age: 41, label: "前厄" },
-                { age: 42, label: "本厄", main: true },
-                { age: 43, label: "後厄" },
-                { age: 60, label: "前厄" },
-                { age: 61, label: "本厄", main: true },
-                { age: 62, label: "後厄" }
-                ],
-                female: [
-                { age: 18, label: "前厄" },
-                { age: 19, label: "本厄", main: true },
-                { age: 20, label: "後厄" },
-                { age: 32, label: "前厄" },
-                { age: 33, label: "本厄", main: true },
-                { age: 34, label: "後厄" },
-                { age: 36, label: "前厄" },
-                { age: 37, label: "本厄", main: true },
-                { age: 38, label: "後厄" }
-                ]
-            };
-
-            function eraYear(year) {
-                return year >= ERA_START
-                ? `${ERA_NAME}${year - ERA_START + 1}`
-                : year;
-            }
-
-            function renderGrouped(targetId, data) {
-                const wrap = document.getElementById(targetId);
-                if (!wrap) return;
-
-                for (let i = 0; i < data.length; i += 3) {
-                const group = data.slice(i, i + 3);
-
-                const set = document.createElement("div");
-                set.className = "yaku-set";
-
-                const title = document.createElement("div");
-                title.className = "yaku-set-title";
-                title.textContent = `${group[0].age}〜${group[2].age}歳`;
-                set.appendChild(title);
-
-                group.forEach(item => {
-                    const birthYear = CURRENT_YEAR - item.age + 1;
-                    const row = document.createElement("div");
-                    row.className = "yaku-row";
-                    if (item.main) row.classList.add("honyaku");
-
-                    row.innerHTML = `
-                    <span>${item.age}歳 ${item.label}</span>
-                    <span>${eraYear(birthYear)}年生</span>
-                    `;
-                    set.appendChild(row);
-                });
-
-                wrap.appendChild(set);
-                }
-            }
-
-            document.getElementById("era-year").textContent = eraYear(CURRENT_YEAR);
-            renderGrouped("yakudoshi-male", yakudoshi.male);
-            renderGrouped("yakudoshi-female", yakudoshi.female);
-
-            });
-        </script>
-
+        <script src="js/common.js"></script>
+        <script src="js/animation.js"></script>
+        <script src="js/splash.js"></script>
+        <!--NOTE:外部jsにつきhtmlより削除NG-->
         <script async src="https://www.instagram.com/embed.js"></script>
     </body>
 </html>

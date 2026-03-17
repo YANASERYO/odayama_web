@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <!--SEO-->
+        <title>御参拝・御祈願（予約）</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="御嶽教,神社,初宮,初詣,お守り,御祈願,お祓い,お払い,厄払い,参拝,おみくじ,御朱印,福岡県,北九州市,若松区,三社参り">
+        <!--電話番号自動リンク無効-->
+        <meta name="format-detection" content="telephone=no">
+        <!--favicon-->
+        <link rel="icon" href="images/favicon.ico">
+        <!--iOS-->
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <!--Android/PWA-->
+        <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
+        <!--ress/css-->
+        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+
+    <body class="index_body">
+
+        <!fragments>
+        <div id="header-area"></div>
+
+        <main>
+            <section id="worship" class="fade-up">
+                <h2>ご参拝・ご祈願</h2>
+                <p>
+                    ご参拝は年中可能ですが、御朱印につきましては午前10時～午後3時迄<br>
+                    御祈願につきましては事前に御連絡が必要となります
+                </p>
+                <p>電話番号 093‐771‐4134</p>
+                <p>※不在に付、お電話に出られない場合がございます、ご了承くださいませ。</p>
+                <!--TODO:カレンダー埋め込みしてますが、将来的にFlaskで開発中のカレンダーを搭載します-->
+                <div class="googlecalendar">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=3501b21b695119206dcec02f15c9fcc447fb5714539db26497007f9657a046f3%40group.calendar.google.com&ctz=Asia%2FTokyo&mode=week&showTitle=0&bgcolor=%23fff" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                </div> 
+            </section>
+
+            <section class="yakudoshi">
+                <h2><span id="era-year"></span>年 厄除</h2>
+
+                <div class="yakudoshi-grid">
+                    <div class="yakudoshi-box male">
+                        <h3>男性</h3>
+                        <div id="yakudoshi-male"></div>
+                    </div>
+
+                    <div class="yakudoshi-box female">
+                        <h3>女性</h3>
+                        <div id="yakudoshi-female"></div>
+                    </div>
+                </div>
+
+                <p class="note">※年齢は数え年です</p>
+            </section>
+        </main>
+
+        <footer>
+            <address>
+                〒808‐0012<br>
+                福岡県北九州市若松区深町1丁目17‐27<br>
+                TEL 093‐771‐4134
+            </address>
+            <p>© 御嶽教若松教会 小田山神社</p>
+            <a href="https://github.com/YANASERYO" target="_blank" rel="noopener">
+                <img src="images/jinjahisyo_logo.png" alt="神社秘書ロゴ" class="jinjahisyo_logo">
+            </a>
+        </footer>
+
+       <script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+            /*毎年ここだけ変更*/
+            const CURRENT_YEAR = 2026;
+            const ERA_NAME = "令和";
+            const ERA_START = 2019;
+
+            const yakudoshi = {
+                male: [
+                { age: 24, label: "前厄" },
+                { age: 25, label: "本厄", main: true },
+                { age: 26, label: "後厄" },
+                { age: 41, label: "前厄" },
+                { age: 42, label: "本厄", main: true },
+                { age: 43, label: "後厄" },
+                { age: 60, label: "前厄" },
+                { age: 61, label: "本厄", main: true },
+                { age: 62, label: "後厄" }
+                ],
+                female: [
+                { age: 18, label: "前厄" },
+                { age: 19, label: "本厄", main: true },
+                { age: 20, label: "後厄" },
+                { age: 32, label: "前厄" },
+                { age: 33, label: "本厄", main: true },
+                { age: 34, label: "後厄" },
+                { age: 36, label: "前厄" },
+                { age: 37, label: "本厄", main: true },
+                { age: 38, label: "後厄" }
+                ]
+            };
+
+            function eraYear(year) {
+                return year >= ERA_START
+                ? `${ERA_NAME}${year - ERA_START + 1}`
+                : year;
+            }
+
+            function renderGrouped(targetId, data) {
+                const wrap = document.getElementById(targetId);
+                if (!wrap) return;
+
+                for (let i = 0; i < data.length; i += 3) {
+                const group = data.slice(i, i + 3);
+
+                const set = document.createElement("div");
+                set.className = "yaku-set";
+
+                const title = document.createElement("div");
+                title.className = "yaku-set-title";
+                title.textContent = `${group[0].age}〜${group[2].age}歳`;
+                set.appendChild(title);
+
+                group.forEach(item => {
+                    const birthYear = CURRENT_YEAR - item.age + 1;
+                    const row = document.createElement("div");
+                    row.className = "yaku-row";
+                    if (item.main) row.classList.add("honyaku");
+
+                    row.innerHTML = `
+                    <span>${item.age}歳 ${item.label}</span>
+                    <span>${eraYear(birthYear)}年生</span>
+                    `;
+                    set.appendChild(row);
+                });
+
+                wrap.appendChild(set);
+                }
+            }
+
+            document.getElementById("era-year").textContent = eraYear(CURRENT_YEAR);
+            renderGrouped("yakudoshi-male", yakudoshi.male);
+            renderGrouped("yakudoshi-female", yakudoshi.female);
+
+            });
+        </script>
+
+        <!--NOTE:外部jsにつきhtmlより削除NG-->
+        <script src="js/animation.js"></script>
+        <script src="js/common.js"></script>
+        <script async src="https://www.instagram.com/embed.js"></script>
+    </body>
+</html>
