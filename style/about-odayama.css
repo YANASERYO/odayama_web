@@ -90,12 +90,12 @@ NOTE:フォント反映済*/
     letter-spacing: 0.1em;
 }
 
-#about-odayama {
+.about-odayama {
   margin: 0 auto;
   padding: 0 24px;
 }
 
-#about-odayama p {
+.about-odayama p {
   margin-bottom: 1.8em;   /* 段落間*/
   line-height: 2;         /* 行間*/
   font-size: 1.05rem;
