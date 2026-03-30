@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+/*iframeで埋め込み
+  NOTE:今後カレンダー自作しAPI使用する場合は削除する*/
+.googlecalendar {
+  max-width: 1000px;
+  margin: 40px auto;
+}
+
+.googlecalendar iframe {
+  width: 100%;
+  height: 600px; /* 必要に応じて調整 */
+  border: none;
+}
+
+/*厄年全体
+  NOTE:情報量が多いため視認性優先した、デザイン変更時は可読性を維持したい*/
+.yakudoshi {
+  max-width: 1100px;
+  margin: 120px auto;
+  padding: 0 16px;
+}
+
+.yakudoshi h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 80px;
+  letter-spacing: 0.15em;
+}
+
+/*2カラム*/
+.yakudoshi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+/*男・女ボックス*/
+.yakudoshi-box {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 32px;
+}
+
+.yakudoshi-box h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 32px;
+  letter-spacing: 0.2em;
+}
+
+/*前厄・本厄・後厄をセットに*/
+.yaku-set {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+  background: #fff;
+}
+
+/*年齢帯タイトル*/
+.yaku-set-title {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #555;
+  letter-spacing: 0.1em;
+}
+
+/*各行*/
+.yaku-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px dashed #ddd;
+  font-size: 0.95rem;
+}
+
+.yaku-row:last-child {
+  border-bottom: none;
+}
+
+/*本厄を強調する*/
+.yaku-row.honyaku {
+  color: #b30000;
+  font-weight: bold;
+  background: rgba(179,0,0,0.05);
+  border-radius: 6px;
+}
+
+/*スマホ対応*/
+@media (max-width: 768px) {
+  .yakudoshi-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+#about-ontake {
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+#about-ontake p {
+  margin-bottom: 1.8em;   /* 段落間*/
+  line-height: 2;         /* 行間*/
+  font-size: 1.05rem;
+}
+
+#about-ontake {
+  padding: 60px 24px;
+  border-radius: 12px;
+}

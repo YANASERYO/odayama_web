@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+/*祭神名フォント
+　NOTE：雰囲気で決めた、文字サイズが小さいと潰れる*/
+@font-face {
+  font-family: 'Tamanegi';
+  src: url('../fonts/tamanegikaisyo.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*祭神名見出し
+  NOTE:他cssに上書きされるのでimportantを使用した
+  変更時は全体設計の見直し要、フォントも変更したい*/
+.kami-title {
+  font-size: 3rem !important;
+  letter-spacing: 0.2em !important;
+  margin-bottom: 120px !important;
+  text-align: center !important;
+}
+
+/*祭神リスト*/
+.kami-list {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/*神1柱ごとの大きさを決定
+　TODO:大きく作りすぎた気がする…、違和感感じたら修正*/
+.kami-item {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  margin: 0 auto 140px;
+}
+
+/*祭神の画像
+  NOTE:画像自体の大きさはある程度修正済であるが
+  均一ではないため注意*/
+.kami-image {
+  flex: 0 0 40%;
+}
+
+.kami-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/*祭神の説明文*/
+.kami-text {
+  flex: 1;
+  text-align: left;
+}
+
+/*左→右→左 に交互配置*/
+.kami-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/*スマホは縦並び*/
+@media (max-width: 768px) {
+  .kami-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .kami-text {
+    text-align: left;
+  }
+}
+
+
+/*祭神名
+NOTE:フォント反映済*/
+.kamisama_name{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  font-family: Tamanegi;
+}
+
+.furigana{
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.2rem;
+    color: rgba(0, 0, 0, 0.45);
+    letter-spacing: 0.1em;
+}
+
+#about-odayama {
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+#about-odayama p {
+  margin-bottom: 1.8em;   /* 段落間*/
+  line-height: 2;         /* 行間*/
+  font-size: 1.05rem;
+}
+
+
+/*祭神スクロール演出*/
+/*初期状態*/
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/*表示状態*/
+.fade-up.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
