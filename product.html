@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <!--SEO-->
         <title>オンライン授与所 | 小田山神社</title>
-        <meta name="description" content="##変更する">
+        <meta name="description" content="小田山神社のオンライン授与所。御朱印、御守り、祈願札などの授与品についてご相談いただけます。">
         <meta name="keywords" content="御嶽教,神社,初宮,初詣,お守り,御祈願,お祓い,お払い,厄払い,参拝,おみくじ,御朱印,福岡県,北九州市,若松区,三社参り">
         <!--電話番号自動リンク無効-->
         <meta name="format-detection" content="telephone=no">
@@ -27,8 +27,142 @@
         <!fragments>
         <div id="header-area"></div>
 
-        <main>
-            <h1>現在準備中です</h1>
+        <main class="online-juyo">
+            <section class="store-hero" aria-labelledby="store-title">
+                <div class="store-hero__inner">
+                    <p class="store-eyebrow">小田山神社</p>
+                    <h1 id="store-title">オンライン授与所</h1>
+                    <p>
+                        遠方の方やご参拝が難しい方へ、御朱印や御守りなどの授与品を選び、
+                        決済画面へ進める準備を整えています。
+                    </p>
+                    <div class="store-hero__actions">
+                        <a href="#juyo-list" class="store-button store-button--primary">授与品を見る</a>
+                        <a href="#checkout" class="store-button store-button--secondary">決済準備へ</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="store-intro" aria-label="オンライン授与所のご案内">
+                <div class="store-intro__text">
+                    <p class="store-eyebrow">ご案内</p>
+                    <h2>大切にお届けするために</h2>
+                    <p>
+                        授与品は神社でお受けいただくことを大切にしながら、事情によりお越しになれない方へ
+                        個別にご案内しています。初穂料や送料は、決済システム側で確定できる構成にしています。
+                    </p>
+                </div>
+                <div class="store-intro__image">
+                    <img src="images/pray.png" alt="小田山神社での御祈願の様子">
+                </div>
+            </section>
+
+            <section id="juyo-list" class="juyo-section" aria-labelledby="juyo-title">
+                <div class="section-heading">
+                    <p class="store-eyebrow">授与品</p>
+                    <h2 id="juyo-title">授与品を選ぶ</h2>
+                    <p>商品データを元に一覧を表示します。画像は後から商品ごとに登録できます。</p>
+                </div>
+
+                <div class="product-toolbar">
+                    <p data-product-count>商品を読み込んでいます。</p>
+                    <label>
+                        <span>カテゴリ</span>
+                        <select data-category-filter>
+                            <option value="all">すべて</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="juyo-grid" data-product-grid data-products-source=""></div>
+
+                <template id="product-card-template">
+                    <article class="juyo-card">
+                        <div class="product-image" data-product-image-wrap>
+                            <img data-product-image alt="">
+                            <span data-product-image-placeholder>画像準備中</span>
+                        </div>
+                        <div class="juyo-card__body">
+                            <div class="juyo-card__top">
+                                <h3 data-product-name></h3>
+                                <span data-product-status></span>
+                            </div>
+                            <p class="product-category" data-product-category></p>
+                            <p data-product-description></p>
+                            <dl>
+                                <div>
+                                    <dt>初穂料</dt>
+                                    <dd data-product-offering></dd>
+                                </div>
+                                <div>
+                                    <dt>授与方法</dt>
+                                    <dd data-product-fulfillment></dd>
+                                </div>
+                            </dl>
+                            <button type="button" class="juyo-card__button" data-add-to-cart>
+                                選択する
+                            </button>
+                        </div>
+                    </article>
+                </template>
+            </section>
+
+            <section id="checkout" class="checkout-section" aria-labelledby="checkout-title">
+                <div class="checkout-cart">
+                    <p class="store-eyebrow">選択内容</p>
+                    <h2 id="checkout-title">決済へ進む準備</h2>
+                    <p class="checkout-cart__lead">
+                        選んだ授与品と申込情報を、決済セッション作成APIへ送信します。
+                    </p>
+                    <div class="cart-empty" data-cart-empty>
+                        授与品がまだ選択されていません。
+                    </div>
+                    <ul class="cart-list" data-cart-list aria-live="polite"></ul>
+                    <p class="checkout-note">
+                        初穂料・送料・配送方法はサーバー側で確定してください。ブラウザ側の値だけで決済金額を決めない構成です。
+                    </p>
+                </div>
+
+                <form class="checkout-form" data-checkout-form data-checkout-endpoint="/api/create-checkout-session" novalidate>
+                    <div class="checkout-form__grid">
+                        <label class="checkout-field">
+                            <span>お名前</span>
+                            <input type="text" name="name" autocomplete="name" required>
+                        </label>
+                        <label class="checkout-field">
+                            <span>メールアドレス</span>
+                            <input type="email" name="email" autocomplete="email" required>
+                        </label>
+                        <label class="checkout-field">
+                            <span>電話番号</span>
+                            <input type="tel" name="phone" autocomplete="tel" required>
+                        </label>
+                        <label class="checkout-field">
+                            <span>郵便番号</span>
+                            <input type="text" name="postalCode" autocomplete="postal-code" inputmode="numeric" required>
+                        </label>
+                    </div>
+                    <label class="checkout-field">
+                        <span>お届け先住所</span>
+                        <textarea name="address" rows="3" autocomplete="street-address" required></textarea>
+                    </label>
+                    <label class="checkout-field">
+                        <span>備考</span>
+                        <textarea name="note" rows="3" placeholder="御朱印帳への記帳希望、祈願内容など"></textarea>
+                    </label>
+                    <label class="checkout-consent">
+                        <input type="checkbox" name="consent" required>
+                        <span>授与品の内容、初穂料、送料は決済画面または神社からの案内で確認します。</span>
+                    </label>
+                    <button type="submit" class="checkout-submit" data-checkout-submit disabled>
+                        決済へ進む
+                    </button>
+                    <p class="checkout-status" data-checkout-status role="status" aria-live="polite"></p>
+                    <p class="checkout-fallback">
+                        決済API未接続の場合は <a href="tel:0937714134">093-771-4134</a> へお問い合わせください。
+                    </p>
+                </form>
+            </section>
         </main>
 
         <!fragmets>    
@@ -37,6 +171,8 @@
         <!--NOTE:外部jsにつきhtmlより削除NG-->
         <script src="js/animation.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/products-data.js"></script>
+        <script src="js/product.js"></script>
         <script async src="https://www.instagram.com/embed.js"></script>
     </body>
 </html>

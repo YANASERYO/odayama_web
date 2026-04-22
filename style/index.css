@@ -88,20 +88,7 @@ TODO:フォント再検討の余地あり*/
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 768px) {
-  .news-list li {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
 
-  .news-thumb {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    margin-bottom: 12px;
-  }
-}
 
 .news-thumb {
   width: 80px;
@@ -186,19 +173,6 @@ TODO:フォント再検討の余地あり*/
   margin: 0 !important;
 }
 
-/*タブレット*/
-@media (max-width: 768px) {
-  .instagram-grid .instagram-media {
-    flex: 0 0 calc(50% - 8px);
-  }
-}
-
-/*スマホ*/
-@media (max-width: 480px) {
-  .instagram-grid .instagram-media {
-    flex: 0 0 100%;
-  }
-}
 
 /*イベントテーブル
 TODO:画像挿入予定*/
@@ -230,4 +204,39 @@ TODO:画像挿入予定*/
 
 .events-table tr:last-child td {
   border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .news-list li {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .news-thumb {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 12px;
+  }
+}
+
+/*タブレット*/
+@media (max-width: 768px) {
+  .instagram-grid .instagram-media {
+    flex: 0 0 calc(50% - 8px);
+  }
+}
+
+/*スマホ*/
+@media (max-width: 480px) {
+  .instagram-grid .instagram-media {
+    flex: 0 0 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .insta_pr {
+    display: none;
+  }
 }

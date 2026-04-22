@@ -27,22 +27,40 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================= */
 
     const qr = document.querySelector(".insta_qr");
-    const newsSection = document.querySelector("#news");
+const newsSection = document.querySelector("#news");
+const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-    if (qr && newsSection) {
+if (qr && newsSection) {
+    let observer;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting){
-                    qr.classList.add("show");
-                } else {
-                    qr.classList.remove("show");
-                }
-            });
-        }, { threshold: 0.1 });
+    const setupObserver = () => {
+        if (mediaQuery.matches) {
+            qr.classList.remove("show");
+            if (observer) {
+                observer.disconnect();
+                observer = null;
+            }
+            return;
+        }
 
-        observer.observe(newsSection);
-    }
+        if (!observer) {
+            observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        qr.classList.add("show");
+                    } else {
+                        qr.classList.remove("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(newsSection);
+        }
+    };
+
+    setupObserver();
+    mediaQuery.addEventListener("change", setupObserver);
+}
 
 
 
